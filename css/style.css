@@ -1,0 +1,9 @@
+body{
+    background-color: rgb(24, 24, 27);
+}
+#search-field{
+    border-radius: 40px 0 0 40px;
+}
+#search-btn{
+    border-radius: 0 40px 40px 0;
+}
