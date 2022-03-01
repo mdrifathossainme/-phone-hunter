@@ -12,6 +12,7 @@ body{
     color:rgb(2, 14, 24);
 }
 .card img{
-    margin-top: 20px;
+    padding-top: 20px;
     width: 50%;
+    margin: auto;
 }
