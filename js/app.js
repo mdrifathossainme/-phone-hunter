@@ -1,3 +1,10 @@
+// spinner
+function spinnerAdd(remove, add) {
+  const spinner = document.getElementById("spinner");
+  spinner.classList.remove(remove);
+  spinner.classList.add(add);
+}
+
 const search = document.getElementById('search-btn').addEventListener('click', () => {
   const searchValue = document.getElementById('search-field')
 
@@ -6,15 +13,36 @@ const search = document.getElementById('search-btn').addEventListener('click', (
     error.innerText="Please type to something for searching"
   }
   else{
+    error.innerText = "";
+
+    spinnerAdd("d-none", "d-block");
     const apiSource = () => {
       const url = (`https://openapi.programming-hero.com/api/phones?search=${searchValue.value}`);
       fetch(url)
         .then(res => res.json())
         .then(data => searchResult(data.data))
+        .catch((error)=>noResult(error))
     }
+
     apiSource();
     const searchResult = (result) => {
       const displayShow = document.getElementById('result-container')
+
+      spinnerAdd( "d-block", "d-none");
+
+
+      const resultCount = document.getElementById("count");
+      
+      if (result.length > 1) {
+        resultCount.innerHTML = `${result.length} results found for "<strong>${searchValue.value}</strong>"`;
+      } else if (result.length == 1) {
+        resultCount.innerHTML = `${result.length} result found for "<strong>${searchValue.value}</strong>" `;
+      }
+
+      searchValue.value = "";
+      displayShow.textContent = "";
+
+
       result.forEach(element => {
         // console.log(element)
         const div = document.createElement('div')
@@ -69,5 +97,5 @@ const search = document.getElementById('search-btn').addEventListener('click', (
       popUpshow.textContent = "";
       popUpshow.appendChild(div);
     };
-    
+
    
