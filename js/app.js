@@ -46,6 +46,11 @@ const search = document.getElementById('search-btn').addEventListener('click', (
       else{
         SeeMore( "d-block","d-none")
       }
+      
+
+
+
+
       const displayShow = document.getElementById('result-container')
 
       spinnerAdd("d-block", "d-none");
