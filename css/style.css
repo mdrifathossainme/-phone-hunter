@@ -53,4 +53,7 @@ button.btn-close {
     padding: 0;
 
    }
+   .none{
+       display: none;
+   }
   }
