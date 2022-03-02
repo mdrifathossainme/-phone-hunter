@@ -19,31 +19,37 @@ const search = document.getElementById('search-btn').addEventListener('click', (
     const apiSource = () => {
       const url = (`https://openapi.programming-hero.com/api/phones?search=${searchValue.value}`);
       fetch(url)
-        .then(res => res.json())
-        .then(data => searchResult(data.data))
-        .catch((error)=>noResult(error))
-    }
-
+      .then((res) => res.json())
+      .then((data) => searchResult(data))
+      .catch((error) => Error(error));
+  };
+  const Error = () => {
+    searchValue.value = "";
+  const noFund=  document.getElementById("result-container");
+    noFund.textContent='';
+   alert('serch Result not Found')
+  };
     apiSource();
     const searchResult = (result) => {
+      const getResult=result.data;
       const displayShow = document.getElementById('result-container')
 
       spinnerAdd( "d-block", "d-none");
 
 
-      const resultCount = document.getElementById("count");
+     let resultCount = document.getElementById("count");
       
-      if (result.length > 1) {
-        resultCount.innerHTML = `${result.length} results found for "<strong>${searchValue.value}</strong>"`;
-      } else if (result.length == 1) {
-        resultCount.innerHTML = `${result.length} result found for "<strong>${searchValue.value}</strong>" `;
+      if (getResult.length > 1) {
+        resultCount.innerHTML = `${getResult.length} results found for "<strong>${searchValue.value}</strong>"`;
+      } else if (getResultt.length == 1) {
+        resultCount.innerHTML = `${getResult.length} result found for "<strong>${searchValue.value}</strong>" `;
       }
 
       searchValue.value = "";
       displayShow.textContent = "";
 
 
-      result.forEach(element => {
+      getResult.forEach(element => {
         // console.log(element)
         const div = document.createElement('div')
         div.classList.add('col')
